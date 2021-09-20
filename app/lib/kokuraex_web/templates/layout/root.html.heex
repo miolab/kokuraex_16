@@ -12,11 +12,14 @@
   <body>
     <header>
       <section class="container">
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
+        <a href={Routes.page_path(@conn, :index)} class="phx-logo">
+          <img src={Routes.static_path(@conn, "/images/img_header.png")} alt="kokura.ex Logo"/>
         </a>
       </section>
     </header>
     <%= @inner_content %>
+    <footer style="text-align: center;">
+      <p>© 2021 kokura.ex</p>
+    </footer>
   </body>
 </html>
