@@ -14,20 +14,26 @@
       <header>
         <section class="flex">
           <div class="w-4/12">
-            <a href={Routes.page_path(@conn, :index)} class="phx-logo">
+            <a href={Routes.page_path(@conn, :index)}>
               <img src={Routes.static_path(@conn, "/images/img_header.png")} alt="kokura.ex Logo"/>
             </a>
           </div>
           <div class="w-6/12"></div>
           <div class="w-2/12 max-w-xs flex">
-            <a href="https://twitter.com/search?q=%23kokuraex" class="w-1/2">
+            <a
+              href="https://twitter.com/search?q=%23kokuraex"
+              class="w-1/2 hover:opacity-75"
+            >
               <img
                 src={Routes.static_path(@conn, "/images/img_twitter.jpg")}
                 alt="twitter #kokuraex"
                 class="rounded-3xl"
               >
             </a>
-            <a href="https://elixirjp.slack.com/archives/CPMB7CFPZ" class="w-1/2">
+            <a
+              href="https://elixirjp.slack.com/archives/CPMB7CFPZ"
+              class="w-1/2 hover:opacity-75"
+            >
               <img
                 src={Routes.static_path(@conn, "/images/img_slack.png")}
                 alt="slack #kokura-ex"
@@ -55,7 +61,7 @@
         <%= @inner_content %>
       </main>
 
-      <footer class="text-center mt-3 mb-5">
+      <footer class="text-center mt-3 mb-3">
         <p>© 2021 kokura.ex</p>
       </footer>
     </div>
