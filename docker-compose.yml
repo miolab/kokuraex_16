@@ -7,6 +7,8 @@ services:
     ports:
       - ${PHOENIX_PORT}:4000
     environment:
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - PHOENIX_PORT=${PHOENIX_PORT}
       - PORT=${PHOENIX_PORT}
     stdin_open: true
     tty: true
