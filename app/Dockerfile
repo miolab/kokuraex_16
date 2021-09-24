@@ -3,7 +3,8 @@ FROM elixir:1.12.2-slim
 ENV MIX_HOME=/root/.mix \
   MIX_ENV=prod \
   SECRET_KEY_BASE=${SECRET_KEY_BASE} \
-  PHOENIX_PORT=${PHOENIX_PORT}
+  PHOENIX_PORT=${PHOENIX_PORT} \
+  PORT=${PHOENIX_PORT}
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
