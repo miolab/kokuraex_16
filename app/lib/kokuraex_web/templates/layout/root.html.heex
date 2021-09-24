@@ -15,10 +15,15 @@
         <section class="flex">
           <div class="w-4/12">
             <a href={Routes.page_path(@conn, :index)}>
-              <img src={Routes.static_path(@conn, "/images/img_header.png")} alt="kokura.ex Logo"/>
+              <img
+                src={Routes.static_path(@conn, "/images/img_header.png")}
+                alt="kokura.ex Logo"
+                class="w-4/6"
+              />
             </a>
           </div>
-          <div class="w-6/12"></div>
+          <div class="w-6/12">
+          </div>
           <div class="w-2/12 max-w-xs flex">
             <a
               href="https://twitter.com/search?q=%23kokuraex"
@@ -27,7 +32,7 @@
               <img
                 src={Routes.static_path(@conn, "/images/img_twitter.jpg")}
                 alt="twitter #kokuraex"
-                class="rounded-3xl"
+                class="rounded-3xl w-5/6"
               >
             </a>
             <a
@@ -37,13 +42,13 @@
               <img
                 src={Routes.static_path(@conn, "/images/img_slack.png")}
                 alt="slack #kokura-ex"
-                class="rounded-3xl"
+                class="rounded-3xl w-5/6"
               >
             </a>
           </div>
         </section>
         <section>
-          <ul class="flex mt-1 mb-4 text-xl font-bold text-yellow-500 w-2/3 mx-auto">
+          <ul class="flex mt-2 text-xl font-bold text-yellow-500 w-2/3 mx-auto sticky">
             <li class="flex-grow text-center hover:opacity-75">
               <%= link "Home", to: Routes.page_path(@conn, :index) %>
             </li>
@@ -57,11 +62,11 @@
         </section>
       </header>
 
-      <main class="flex-grow">
+      <main class="flex-grow mt-10">
         <%= @inner_content %>
       </main>
 
-      <footer class="text-center mt-10 mb-3">
+      <footer class="text-center mt-16 mb-3">
         <p>© 2021 kokura.ex</p>
       </footer>
     </div>
