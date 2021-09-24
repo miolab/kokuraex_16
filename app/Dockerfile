@@ -1,5 +1,11 @@
 FROM elixir:1.12.2-slim
 
+ENV MIX_HOME=/root/.mix \
+  MIX_ENV=prod \
+  SECRET_KEY_BASE=${SECRET_KEY_BASE} \
+  PHOENIX_PORT=${PHOENIX_PORT}
+
+COPY . /usr/src/app
 WORKDIR /usr/src/app
 
 RUN apt-get update -y && \
@@ -24,12 +30,6 @@ RUN apt-get clean
 RUN mix local.hex --force && \
   mix local.rebar --force
 
-# COPY ./mix.exs /app/
-# COPY ./mix.lock /app/
-
 RUN mix archive.install hex phx_new 1.6.0-rc.0 --force
-# RUN mix deps.compile
 
-# RUN mix phx.digest
-
-# CMD [ "mix", "phx.server", "--no-halt" ]
+CMD [ "mix", "phx.server", "--no-halt" ]
