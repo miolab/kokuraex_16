@@ -23,7 +23,6 @@ config :kokuraex, KokuraexWeb.Endpoint,
       "--watch",
       cd: Path.expand("../assets", __DIR__)
     ]
-
   ]
 
 # ## SSL Support
