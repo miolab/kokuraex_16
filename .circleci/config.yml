@@ -68,7 +68,7 @@ jobs:
           name: Mix test
           command: |
             set -x
-            docker-compose exec app bash -c "MIX_ENV=test mix test"
+            docker-compose exec app bash -c "MIX_ENV=prod mix test"
       - persist_to_workspace:
           root: .
           paths:
