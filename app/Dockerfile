@@ -32,6 +32,5 @@ RUN mix local.hex --force && \
   mix local.rebar --force
 
 RUN mix archive.install hex phx_new 1.6.0-rc.0 --force
-RUN mix phx.digest
 
 CMD [ "mix", "phx.server", "--no-halt" ]
