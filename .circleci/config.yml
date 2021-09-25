@@ -5,12 +5,20 @@ executors:
     machine:
       image: ubuntu-2004:202107-02
 
+orbs:
+  heroku: circleci/heroku@1.2.6
+
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build
-
+      - deploy:
+          requires:
+            - build
+          # filters:
+          #   branches:
+          #     only: main
 jobs:
   build:
     executor:
@@ -55,8 +63,44 @@ jobs:
           command: |
             set -x
             docker-compose exec app bash -c "MIX_ENV=test mix test"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./app/deps
+            - ./app/_build
+            - ./app/priv
+            - ./app/assets/
       - run:
           name: Finish build
           command: |
             set -x
             echo "Finish build"
+  deploy:
+    executor:
+      name: machine-executor
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Check directories/files
+          command: |
+            set -x
+            pwd && ls -a && ls app
+      - heroku/install
+      - heroku/check-authentication
+      - run:
+          name: Heroku container login, push, release
+          working_directory: app
+          command: |
+            set -x
+            ls -a
+            heroku container:login
+            heroku container:push web -a $HEROKU_APP_NAME
+            heroku container:release web -a $HEROKU_APP_NAME
+      - run:
+          name: Finish deploy
+          command: |
+            set -x
+            echo "Finish deploy"
+
