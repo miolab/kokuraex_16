@@ -34,17 +34,23 @@ jobs:
           name: Mix deps.get & compile
           command: |
             set -x
-            docker-compose run --rm app bash -c "mix do deps.get, compile"
+            docker-compose run app bash -c "mix deps.get --only prod"
+            docker-compose run app bash -c "MIX_ENV=prod mix compile"
       - run:
           name: Npm install in assets directory
           command: |
             set -x
-            docker-compose run --rm app bash -c "cd assets && npm i"
+            docker-compose run app bash -c "cd assets && npm i"
       - run:
-          name: Mix phx.digest
+          name: Compile assets
           command: |
             set -x
-            docker-compose run --rm app mix phx.digest
+            docker-compose run app bash -c "MIX_ENV=prod mix assets.deploy"
+      - run:
+          name: Mix release
+          command: |
+            set -x
+            docker-compose run app bash -c "MIX_ENV=prod mix release"
       - run:
           name: Run Docker containers
           command: |
